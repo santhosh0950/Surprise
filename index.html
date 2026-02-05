@@ -58,7 +58,6 @@ section{padding:40px 18px;}
 }
 .card.show{opacity:1;transform:translateY(0);}
 
-/* Blur only if supported */
 @supports (backdrop-filter: blur(8px)) {
   .card{
     backdrop-filter: blur(8px);
@@ -89,17 +88,19 @@ section{padding:40px 18px;}
     border-left:3px solid #fff;
 }
 
-/* GALLERY */
+/* ===== GALLERY (FIXED 3:4) ===== */
 .gallery{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
     gap:14px;
 }
+
 .gallery img{
     width:100%;
-    height:190px;
-    object-fit:cover;
+    aspect-ratio:3 / 4;   /* FORCE 3:4 */
+    object-fit:cover;     /* FILL PERFECTLY */
     border-radius:14px;
+    display:block;
 }
 
 /* BUTTON */
@@ -222,10 +223,10 @@ body.night .card{
 <div class="card reveal">
     <h2>Our Memories 📸</h2>
     <div class="gallery">
-        <img src="S.jpg">
-        <img src="Y.jpg">
-        <img src="P.jpg">
-        <img src="A.jpg">
+        <img src="S.jpg" alt="">
+        <img src="Y.jpg" alt="">
+        <img src="P.jpg" alt="">
+        <img src="A.jpg" alt="">
     </div>
 </div>
 
@@ -283,7 +284,7 @@ function updateCountup(){
 setInterval(updateCountup,1000);
 updateCountup();
 
-// FLOATING HEARTS (LIGHT)
+// FLOATING HEARTS
 let heartCount = 0;
 const maxHearts = 10;
 
@@ -306,7 +307,7 @@ setInterval(() => {
     });
 }, 1800);
 
-// REVEAL (NO SCROLL LAG)
+// REVEAL
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
